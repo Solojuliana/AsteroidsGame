@@ -1,10 +1,9 @@
 //your variable declarations here
 Spaceship boo;
 Star[] nightSky = new Star[100];
-Asteriod[] particles = new Asteriod[10];
+ArrayList <Asteriod> particles;
 public void setup() 
 {
-  //your code here
   size(600,600);
   boo = new Spaceship();
   for(int i = 0; i < nightSky.length; i++)
@@ -12,9 +11,10 @@ public void setup()
   	nightSky[i] = new Star();
   }
 
-  for(int j = 0; j < particles.length; j++)
+  particles = new ArrayList <Asteriod>();
+  for(int j = 0; j < 20; j++)
   {
-  	particles[j] = new Asteriod();
+  	particles.add(new Asteriod());
   }
 }
 
@@ -27,12 +27,15 @@ public void draw()
   	nightSky[i].move();
   }
 
-  for(int j = 0; j < particles.length; j++)
+  for(int j = 0; j < particles.size(); j++)
   {
-  	particles[j].show();
-  	particles[j].turn(2);
-  	particles[j].move();
+  	particles.get(j).show();
+  	particles.get(j).move();
+  	float d = dist(boo.getX(), boo.getY(), particles.get(j).getX(), particles.get(j).getY());
+  	if(d < 20)
+  		particles.remove(j);
   }
+
   boo.show();
   boo.move();
 }
@@ -65,6 +68,13 @@ public void keyPressed()
   {
   	boo.accelerate(0.2);
   	boo.fire();
+  }
+
+  if(key == 's')
+  {
+  	//boo.setX(boo.getX());
+  	//boo.setY(boo.getY());
+  	boo.accelerate(-0.2);
   }
 }
 

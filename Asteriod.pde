@@ -1,6 +1,6 @@
 class Asteriod extends Floater
 {
-	private int myRotationSpeed, myColor2, myColor3;
+	private int myRotationSpeed;
 	public Asteriod()
 	{
 		corners = 6;
@@ -19,9 +19,7 @@ class Asteriod extends Floater
 		xCorners[5] = -5;
 		yCorners[5] = 0;
 
-		myColor = 227;
-		myColor2 = 151;
-		myColor2 = 101;
+		myColor = 0;
         myCenterX = (int)(Math.random()*600);
         myCenterY = (int)(Math.random()*600);
         myPointDirection = (int)(Math.random()*180);
@@ -31,10 +29,10 @@ class Asteriod extends Floater
 	}
 
 	public void show ()  
-  	{             
-    	fill(myColor, myColor2, myColor3);   
-    	stroke(myColor, myColor2,myColor3); 
-    	translate((float)myCenterX, (float)myCenterY);    
+  	{              
+    	fill(222, 112, 9); 
+    	stroke(227, 151,121); 
+    	translate((float)myCenterX, (float)myCenterY);
     	float dRadians = (float)(myPointDirection*(Math.PI/180));
 	    rotate(dRadians);
     	beginShape();
@@ -49,6 +47,8 @@ class Asteriod extends Floater
 
 	public void move()
 	{
+		myPointDirection+=myRotationSpeed; 
+
 		myCenterX += myDirectionX;    
     	myCenterY += myDirectionY;  		
     	if(myCenterX >width)
