@@ -108,11 +108,13 @@ public void keyPressed()
   	boo.accelerate(-0.2);
   }
 
+  if(key == ' ')
+  {
+  	bullet.add(new Bullet(boo));
+  }
+
 }
 
-public void mouseClicked(){
-	bullet.add(new Bullet(boo));
-} 
 
 
 
