@@ -1,4 +1,3 @@
-//your variable declarations here
 Spaceship boo;
 Star[] nightSky = new Star[100];
 ArrayList <Asteriod> particles;
@@ -71,7 +70,6 @@ public void draw()
 
 	boo.show();
   	boo.move();
-
 
 }
 
