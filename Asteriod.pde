@@ -43,6 +43,10 @@ class Asteriod extends Floater
     	endShape(CLOSE);
     	rotate(-1*dRadians);
     	translate(-1*(float)myCenterX, -1*(float)myCenterY);
+    	//craters
+    	fill(0);
+    	ellipse((float)myCenterX -2, (float)myCenterY-2, 7, 7);
+    	ellipse((float)myCenterX+3, (float)myCenterY + 3, 6,6);
   	}   
 
 	public void move()

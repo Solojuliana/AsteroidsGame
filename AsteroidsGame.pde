@@ -2,6 +2,7 @@
 Spaceship boo;
 Star[] nightSky = new Star[100];
 ArrayList <Asteriod> particles;
+ArrayList <Bullet> bullet = new ArrayList <Bullet>();
 public void setup() 
 {
   size(600,600);
@@ -16,6 +17,7 @@ public void setup()
   {
   	particles.add(new Asteriod());
   }
+
 }
 
 public void draw() 
@@ -36,8 +38,41 @@ public void draw()
   		particles.remove(j);
   }
 
-  boo.show();
-  boo.move();
+
+	for(int i=0; i<bullet.size(); i++){
+		for(int a=0; a<particles.size(); a++){
+			if(dist(bullet.get(i).getX(),bullet.get(i).getY(),particles.get(a).getX(),particles.get(a).getY()) < 20){
+				particles.remove(a);
+				bullet.remove(i);
+				break;
+			}
+
+		}
+	}
+
+	for(int i=0; i<bullet.size(); i++){
+		if(bullet.get(i).getX() >= 600 || bullet.get(i).getX() <= 0){
+			bullet.remove(i);
+			break;
+		}
+	}
+
+	for(int i=0; i<bullet.size(); i++){
+		if(bullet.get(i).getY() >= 600 || bullet.get(i).getY() <= 0){
+			bullet.remove(i);
+			break;
+		}
+	}
+
+	for(Bullet bull: bullet){
+		bull.move();
+		bull.show();
+	}
+
+	boo.show();
+  	boo.move();
+
+
 }
 
 public void keyPressed()
@@ -72,11 +107,14 @@ public void keyPressed()
 
   if(key == 's')
   {
-  	//boo.setX(boo.getX());
-  	//boo.setY(boo.getY());
   	boo.accelerate(-0.2);
   }
+
 }
+
+public void mouseClicked(){
+	bullet.add(new Bullet(boo));
+} 
 
 
 
